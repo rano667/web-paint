@@ -1,11 +1,14 @@
-import PaintBoard from "./components/PaintBoard.tsx";
-import Toolbar from "./components/Toolbar.tsx";
+import PaintBoard from "./components/PaintBoard";
+import Toolbar from "./components/Toolbar";
+import { useBrush } from "./hooks/useBrush";
 
 export default function App() {
+  const brushRef = useBrush();
+
   return (
     <div className="app">
-      <Toolbar />
-      <PaintBoard />
+      <Toolbar brushRef={brushRef} />
+      <PaintBoard brushRef={brushRef} />
     </div>
   );
 }
