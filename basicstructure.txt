@@ -1,0 +1,10 @@
+src/
+ ├── components/
+ │    ├── PaintBoard.tsx
+ │    └── Toolbar.tsx
+ ├── hooks/
+ ├── utils/
+ ├── types/
+ ├── App.tsx
+ ├── main.tsx
+ └── index.css
