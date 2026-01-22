@@ -27,8 +27,8 @@ export default function PaintBoard({ brushRef }: Props) {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
-    // ctx.strokeStyle = "#000000";
-    // ctx.lineWidth = 4;
+    ctx.strokeStyle = brushRef.current.color;
+    ctx.lineWidth = brushRef.current.size;
 
     const getPoint = (e: PointerEvent): Point => {
       const rect = canvas.getBoundingClientRect();
@@ -42,9 +42,14 @@ export default function PaintBoard({ brushRef }: Props) {
       isDrawingRef.current = true;
       lastPointRef.current = getPoint(e);
 
-      // Ensure first stroke uses latest brush
-      ctx.strokeStyle = brushRef.current.color;
-      ctx.lineWidth = brushRef.current.size;
+      if (brushRef.current.tool === "eraser") {
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.lineWidth = brushRef.current.size;
+      } else {
+        ctx.globalCompositeOperation = "source-over";
+        ctx.strokeStyle = brushRef.current.color;
+        ctx.lineWidth = brushRef.current.size;
+      }
     };
 
     const onPointerMove = (e: PointerEvent) => {

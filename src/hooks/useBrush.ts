@@ -5,6 +5,7 @@ export function useBrush() {
   const brushRef = useRef<BrushConfig>({
     color: "#000000",
     size: 4,
+    tool: "brush",
   });
 
   return brushRef;

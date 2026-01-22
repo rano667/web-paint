@@ -8,6 +8,10 @@ type Props = {
 export default function Toolbar({ brushRef }: Props) {
   return (
     <div className="toolbar">
+      <button onClick={() => (brushRef.current.tool = "brush")}>Brush</button>
+
+      <button onClick={() => (brushRef.current.tool = "eraser")}>Eraser</button>
+
       <label>
         Color
         <input
@@ -16,6 +20,7 @@ export default function Toolbar({ brushRef }: Props) {
           onChange={(e) => {
             brushRef.current.color = e.target.value;
           }}
+          disabled={brushRef.current.tool === "eraser"}
         />
       </label>
 
@@ -24,7 +29,7 @@ export default function Toolbar({ brushRef }: Props) {
         <input
           type="range"
           min={1}
-          max={30}
+          max={40}
           defaultValue={brushRef.current.size}
           onChange={(e) => {
             brushRef.current.size = Number(e.target.value);
